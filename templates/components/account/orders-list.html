@@ -1,0 +1,39 @@
+<ul class="account-list">
+    {{#each orders}}
+    <li class="account-listItem table-container">
+        <div class="account-product">
+            <div class="account-product-body">
+                <div class="order-content table-row">
+                    <span class="account-product-heading">Order</span>
+                    <span class="order-number">#{{this.id}}</span>
+                </div>
+                <div class="order-content table-row">
+                    <span class="account-product-heading">Placed On</span>
+                    <span>{{this.date}}</span>
+                </div>
+                <div class="order-content table-row">
+                    <span class="account-product-heading">Quantity</span>
+                    <span>{{ this.items.length}} {{#if this.items.length '===' 1}}item{{else}}items{{/if}}</span>
+                </div>
+                <div class="order-content table-row">
+                    <span class="account-product-heading">Total</span>
+                    <span style="font-size: 16px;">{{this.total.formatted}}</span>
+                </div>
+                <div class="order-content order-status table-row">
+                    <h6 class="account-orderStatus-label">{{this.status}}</h6>
+                    {{#if ../settings.returns_enabled}}
+                        {{#if this.return_url}}
+                            <a class="account-orderStatus-action" href="{{this.return_url}}">
+                                {{lang 'account.orders.return_items' }}
+                            </a>
+                        {{/if}}
+                    {{/if}}
+                </div>
+                <div class="order-content table-row">
+                    <a class="button" href="{{this.details_url}}">View Order Details</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</ul>

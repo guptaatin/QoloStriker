@@ -1,0 +1,254 @@
+// =============================================================================
+// STENCIL
+// =============================================================================
+
+
+// Tools
+// -----------------------------------------------------------------------------
+//
+// 1. Import Citadel's toolkit for use.
+//
+// -----------------------------------------------------------------------------
+
+@import "../../node_modules/@bigcommerce/citadel/dist/tools/toolkit"; // 1
+@import "tools/tools";
+
+// Settings
+// -----------------------------------------------------------------------------
+//
+// 1. Stencil global settings get imported first.
+// 2. Import all Citadel and Foundation settings.
+// 3. Common aria helpers.
+// 4. Import Stencil's component settings overrides.
+// 5. Import tools which set/reset Citadel's global settings, to be consumed by
+//    the rest of Stencil.
+// 6. Import Citadel's version of foundation.
+//      - This enables the ability to "null" variables in the Stencil settings.
+//
+// -----------------------------------------------------------------------------
+
+@import "settings/global/global"; // 1
+
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/global/global"; // 2
+
+@import "settings/global/tools"; // 5
+
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/normalize/normalize"; // 2
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/foundation/foundation"; // 2
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/bigcommerce/bigcommerce"; // 2
+
+@import "../../node_modules/@bigcommerce/citadel/dist/vendor/foundation/foundation"; // 6
+
+@import "settings/normalize/normalize"; // 4
+@import "settings/vendor/vendor"; // 4
+@import "settings/foundation/foundation"; // 4
+@import "settings/citadel/citadel"; // 4
+@import "settings/stencil/stencil"; // 4
+@import "settings/layouts/layouts"; // 4
+
+
+// Utilities
+// -----------------------------------------------------------------------------
+
+@import "utilities/utilities";
+@import "../../node_modules/@bigcommerce/citadel/dist/utilities/utilities";
+
+
+// Fonts
+// -----------------------------------------------------------------------------
+
+@import "fonts/fonts";
+
+// Components
+// -----------------------------------------------------------------------------
+//
+// 1. Import Citadel's normalize dependency.
+// 2. Import Citadel's components.
+// 2. Import Stencil's component additions and custom components.
+//
+// -----------------------------------------------------------------------------
+
+@import "../../node_modules/@bigcommerce/citadel/dist/vendor/normalize/normalize"; // 1
+@import "../../node_modules/@bigcommerce/citadel/dist/components/components"; // 2
+@import "common/index"; // 3
+@import "components/components"; // 6
+
+
+// Layouts
+// -----------------------------------------------------------------------------
+//
+// 1. Stencil design layout files (example: Header or Footer).
+//
+// -----------------------------------------------------------------------------
+
+@import "layouts/layouts"; // 1
+@import "codal/codalLayouts";
+
+
+@import "vendor/jstree/style";
+
+// custom 
+a.ss__result-actions--add-to-wishlist-btn.active svg {
+  fill: red;
+}
+
+#add-to-cart-wrapper input.form-input--incrementTotal::-webkit-inner-spin-button,
+#add-to-cart-wrapper input.form-input--incrementTotal::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#add-to-cart-wrapper input.form-input--incrementTotal {
+  -moz-appearance: textfield;
+}
+
+.form-increment .button {
+  padding: 10px 12px;
+  border-radius: 0;
+  height: 40px;
+}
+
+.form-input--incrementTotal {
+  width: 3.5rem;
+  border: 1px solid #dddedd !important;
+  margin-left: -1px;
+  margin-right: -1px;
+  height: 40px;
+  border-radius: 0px;
+}
+
+.form-increment .form-inlineMessage {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+}
+
+.banner-yellow-title {
+  background-image: linear-gradient(to right, #f3b823, #e0a51f, #cd931b, #b98218, #a67114);
+  width: 100%;
+  float: left;
+  margin-top: -10%;
+  z-index: 0;
+  padding: 10px 0;
+  font-size: 3rem;
+  color: #FFF !important;
+}
+
+.banner-yellow-title span {
+  color: #000 !important;
+  font-weight: 800 !important;
+}
+
+.banner-text-yello h5 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.banner-text-yello p {
+  font-size: 24px;
+  line-height: 30px;
+  margin: 50px 0px;
+}
+
+.banner-text-yello .button {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 22px;
+}
+
+.navUser-convert-b2b {
+  display: none !important;
+}
+
+/* Bundle B2B */
+
+// Hide the page when initializing to solve the problem of page flashing
+.page_type_editaccount {
+
+  .account {
+    form {
+      display: none;
+    }
+  }
+}
+
+.page_type_account_orderstatus,
+.page_type_account_returns,
+.page_type_account_inbox,
+.page_type_account_addressbook,
+.page_type_wishlists,
+.page_type_account_recentitems {
+
+  .account {
+    display: none;
+  }
+}
+
+.navBar--account {
+  display: none;
+}
+
+.modal-close:focus::after,
+.modal-close:focus::before {
+  display: none;
+}
+
+#add-to-cart-wrapper {
+  .form-action {
+    margin-top: 0;
+  }
+
+  .rfq-button-container.rfq-pdp-button-container {
+    display: flex !important;
+  }
+}
+
+.tingle-modal-box {
+  background-color: stencilColor('container-border-global-color-base') !important;
+}
+
+.b2b-wrap table tr:hover {
+  background-color: stencilColor('optimizedCheckout-orderSummary-borderColor') !important;
+}
+
+#invoice-detail-pending .invoice-detail-pending {
+  background-color: stencilColor('container-border-global-color-base') !important;
+}
+
+.dropdown-menu.show-action {
+  background-color: stencilColor('optimizedCheckout-orderSummary-borderColor');
+  width: unset !important;
+}
+
+.cart-info {
+  color: stencilColor('color-textLink--active');
+}
+
+.file-upload-drop {
+  color: stencilColor('color-textLink--active');
+}
+
+.card-figcaption-body>button {
+  width: 100%;
+}
+
+.card-figcaption-body input {
+  vertical-align: middle;
+}
+
+button#add_to_cart {
+  border-color: stencilColor('button--primary-backgroundColor');
+  background-color: stencilColor('button--primary-backgroundColor');
+}
+
+#navPages-account {
+  .navPage-subMenu-list {
+    .navPage-subMenu-action.navPages-action {
+      padding-left: 0;
+    }
+  }
+}
+
+#shopping_list_table .product-options {
+  color: inherit !important;
+}

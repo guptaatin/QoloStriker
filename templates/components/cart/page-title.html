@@ -1,0 +1,7 @@
+
+<div class="page-heading-wrapper main-cart-title-data">
+    <h1 class="page-heading" data-cart-page-title>
+        {{lang 'cart.label' quantity=cart.quantity}}
+    </h1>
+    <button {{#unless cart.items.length}} style="display: none;"{{/unless}} id="RemoveAllProducts" class="btn-remove-products">{{lang 'cart.clear_cart'}}</button>
+</div>

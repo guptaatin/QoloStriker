@@ -1,0 +1,111 @@
+<div class="previewCartWrapper {{#unless cart.items.length}}empty-cart{{/unless}}">
+    <div class="previewCart__header">
+        <div class="added-product">
+            <span class="arrow-success"></span>&nbsp &nbsp Added to Cart
+        </div>
+        <span class="previewCart_title">Cart</span>
+        <span class="close-cart-popup" data-drop-down-close></span>
+      </div>
+  <div class="previewCart">
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            {{#each cart.items }}
+                <li class="cart-product-container">
+                    <div class="cart-product__image">
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img
+                                alt="GiftCertificate"
+                                title="GiftCertificate"
+                                src="{{cdn ../theme_settings.default_image_gift_certificate}}"
+                            >
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=image
+                                fallback_size=../theme_settings.productthumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                                default_image=../theme_settings.default_image_product
+                            }}
+                        {{/if}}
+                    </div>
+                    <div class="cart-product__description">
+
+                        <h6 class="previewCartItem-name">
+                            <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                        </h6>
+                        <dt class="productView-info-name sku-label"{{#unless sku}} style="display: none;"{{/unless}}><span>Product Catalog # </span>{{sku}}</dt>
+                        <span class="previewCartItem-price">
+                            <span>Quantity: {{quantity}}</span>
+                            {{#if options}}
+                            <dl class="definitionList">
+                                {{#each options}}
+                                    <dt class="definitionList-key">{{name}}:</dt>
+                                    <dd class="definitionList-value">
+                                        {{#if is_file}}
+                                            <a href="/viewfile.php?attributeId={{id}}&cartitem={{../id}}">{{value}}</a>
+                                        {{else}}
+                                            {{> components/common/product-options}}
+                                        {{/if}}
+                                    </dd>
+                                {{/each}}
+                            </dl>
+                        {{/if}}
+                        </span>
+                        <div class="cart-product__price-mobile">
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
+                                {{#if price_discounted}}
+                                    {{price_discounted.formatted}}
+                                {{/if}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    </div>
+                    <div class="cart-product__price">
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
+                            {{#if price_discounted}}
+                                {{price_discounted.formatted}}
+                            {{/if}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+                    </li>
+                {{/each}}
+            </ul>
+            <div class="cart__btns">
+                <div class="previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}">
+                    <a href="{{urls.cart}}" class="button--action button--secondary">
+                        View or edit your cart
+                    </a>
+                </div>
+                {{#if cart.show_primary_checkout_button}}
+                    <div class="previewCartAction-checkout">
+                        <a href="{{urls.checkout.single_address}}" class="button--primary">
+                            {{lang 'cart.preview.checkout_now'}}
+                        </a>
+                    </div>
+                {{/if}}
+                {{#if cart.show_multiple_address_shipping}}
+                    <div class="previewCartAction-checkoutMultiple">
+                        <a href="{{urls.checkout.multiple_address}}">
+                            {{lang 'cart.preview.checkout_multiple'}}
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+            <!-- {{#if cart.additional_checkout_buttons}}
+                <div class="previewCart-additionalCheckoutButtons">
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            {{/if}} -->
+        {{else}}
+            <div role="alert" aria-live="polite" aria-atomic="false" class="previewCart-emptyBody">
+                {{lang 'cart.checkout.empty_cart'}}
+            </div>
+        {{/if}}
+    </div>
+</div>

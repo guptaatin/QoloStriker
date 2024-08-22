@@ -1,0 +1,63 @@
+<div id="add-to-cart-wrapper" class="add-to-cart-wrapper" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
+    {{#if customer}}
+        {{#if theme_settings.show_product_quantity_box}}
+            {{inject 'productQuantityErrorMessage'  (lang 'products.quantity_error_message')}}
+            <div class="form-field form-field--increments">
+                <label class="form-label form-label--alternate"
+                    for="qty[]">{{lang 'products.quantity'}}</label>
+                    <div class="form-increment" data-quantity-change>
+                        <button class="button button--icon" data-action="dec">
+                            <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+                            <i class="icon" aria-hidden="true">
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.0859 1.4375L10.6406 0.96875C10.5234 0.851562 10.3359 0.851562 10.2422 0.96875L6 5.21094L1.73438 0.96875C1.64062 0.851562 1.45312 0.851562 1.33594 0.96875L0.890625 1.4375C0.773438 1.53125 0.773438 1.71875 0.890625 1.83594L5.78906 6.73438C5.90625 6.85156 6.07031 6.85156 6.1875 6.73438L11.0859 1.83594C11.2031 1.71875 11.2031 1.53125 11.0859 1.4375Z" fill="black"/>
+                                </svg>
+                            </i>
+                        </button>
+                        <input class="form-input form-input--incrementTotal"
+                            id="qty[]"
+                            name="qty[]"
+                            type="number"
+                            value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                            data-quantity-min="{{product.min_purchase_quantity}}"
+                            data-quantity-max="{{product.max_purchase_quantity}}"
+                            min="1"
+                            pattern="[0-9]*"
+                            aria-live="polite">
+                        <button class="button button--icon" data-action="inc">
+                            <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+                            <i class="icon" aria-hidden="true">
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.890625 5.9375L1.33594 6.40625C1.45312 6.5 1.64062 6.5 1.73438 6.40625L6 2.16406L10.2422 6.40625C10.3359 6.5 10.5234 6.5 10.6406 6.40625L11.0859 5.9375C11.2031 5.82031 11.2031 5.65625 11.0859 5.53906L6.1875 0.617188C6.07031 0.523438 5.90625 0.523438 5.78906 0.617188L0.890625 5.53906C0.773438 5.65625 0.773438 5.82031 0.890625 5.9375Z" fill="black"/>
+                                </svg>
+                            </i>
+                        </button>
+                    </div>
+            </div>
+        {{/if}}
+    {{/if}}
+    <div class="alertBox productAttributes-message" style="display:none">
+        <div class="alertBox-column alertBox-icon">
+            <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+        </div>
+        <p class="alertBox-column alertBox-message"></p>
+    </div>
+    {{#if customer}}
+        <div class="form-action">
+            <button id="form-action-addToCart"
+                    data-wait-message="{{lang 'products.adding_to_cart'}}"
+                    class="button button--primary"
+                    type="submit">
+            <svg data-src='{{cdn "assets/icons/cart.svg"}}'></svg> {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}</button>
+            <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
+        </div>
+    {{else}}
+    <div class="form-action" style="width: 100%;">
+        <a href="/login.php" id="form-action-addToCart"
+                data-wait-message="{{lang 'products.adding_to_cart'}}"
+                class="button button--primary"
+                type="submit">
+        {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}Log in To {{lang 'products.add_to_cart'}}{{/if}}</a>
+    </div>
+    {{/if}}
+</div>

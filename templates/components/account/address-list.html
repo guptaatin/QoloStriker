@@ -1,0 +1,34 @@
+{{#unless customer.addresses}}
+{{> components/common/alert/alert-info (lang 'account.addresses.no_addresses')}}
+{{/unless}}
+
+<ul class="addressList">
+    {{#each customer.addresses}}
+    <li class="address">
+        <div class="panel panel--address">
+            <div class="panel-body panel-body-flex">
+                <h5 class="address-company">{{company}}</h5>
+                <h5 class="address-title">{{first_name}} {{last_name}}</h5>
+                <ul class="address-details address-details--postal">
+                    <li>{{address1}}</li>
+                    <li>{{address2}}</li>
+                    <li>{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</li>
+                    <li>{{country}}</li>
+                </ul>
+                {{#if phone}}
+                <dl class="address-details">
+                    <dt class="address-label">{{lang 'account.addresses.phone' }}</dt>
+                    <dd class="address-description">{{phone}}</dd>
+                </dl>
+                {{/if}}
+            </div>
+            <form action="{{delete_url}}" method="post" data-delete-address="{{lang 'forms.address.confirm_delete'}}">
+                <div class="form-actions">
+                    <a class="adress-link" href="{{edit_url}}">{{lang 'forms.address.edit.heading' }}</a>
+                    <button type="submit" class="adress-link">{{lang 'forms.address.delete.heading' }}</button>
+                </div>
+            </form>
+        </div>
+    </li>
+    {{/each}}
+</ul>

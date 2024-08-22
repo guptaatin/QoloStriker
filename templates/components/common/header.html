@@ -1,0 +1,109 @@
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}"
+        data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<div class="popup-overlay"></div>
+<div class="dropdown-menu" id="cart-preview-dropdown-mobile" aria-hidden="true"></div>
+<header class="header" role="banner">
+    <div class="mobile-menu section-container">
+        <div class="mobile-burger__logo">
+            <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+                <span class="mobileMenu-toggleIcon">{{lang 'header.toggle'}}</span>
+            </a>
+            <h1 class="header-logo">
+                {{> components/common/store-logo}}
+            </h1>
+        </div>
+        <ul class="list-mobile">
+            <li>
+                <button class="navUser-action navUser-action--quickSearch" type="button" id="quick-search-expand"
+                    data-search="quickSearch" aria-controls="quickSearch" aria-label="{{lang 'common.search'}}">
+                    <svg data-src='{{cdn "assets/icons/search.svg"}}'></svg>
+                </button>
+            </li>
+            <li class="navUser-item--account">
+                {{#if customer}}
+                <a class="navUser-action" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                    <svg data-src='{{cdn "assets/icons/login.svg"}}'></svg>
+                </a>
+                {{else}}
+                <a class="navUser-action" href="{{urls.auth.login}}" aria-label="{{lang 'common.login'}}">
+                    <svg data-src='{{cdn "assets/icons/login.svg"}}'></svg>
+                </a>
+                {{/if}}
+            </li>
+            <li class="cart-preview">
+                <a class="navUser-action" href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
+                    <svg data-src='{{cdn "assets/icons/cart.svg"}}'></svg>
+                    <span class="countPill cart-quantity"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+            {{> components/common/quick-search name='nav-quick-search'}}
+        </div>
+    </div>
+    <div class="mobile-menu-bar-bottom section-container">
+        {{#if customer}}
+        {{#each categories}}
+            <a class="{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">{{name}}</a>
+        {{/each}}
+        {{else}}
+        {{#each categories}}
+        {{#if name '!=' 'Law Enforcement+'}}
+            <a class="{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">{{name}}</a>
+        {{/if}}
+        {{/each}}
+        {{/if}}
+    </div>
+    {{> components/common/navigation}}
+    <div class="header-wrapper">
+        <div class="navPages-container container" id="menu" data-menu>
+            {{> components/common/navigation-menu}}
+            <div class="quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+                {{> components/common/quick-search name='nav-quick-search'}}
+            </div>
+            <ul class="nav-list">
+                <li class="navUser-item navUser-item--cart">
+                    <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown"
+                        data-options="align:right" href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
+                        <svg data-src='{{cdn "assets/icons/cart.svg"}}'></svg>
+                        <span class="countPill cart-quantity"></span>
+                    </a>
+
+                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true">
+                    </div>
+                </li>
+                <!-- <li class="navUser-item favorite">
+                    <a class="navUser-action"
+                    href="/wishlist.php"
+                    >
+                        <svg data-src='{{cdn "assets/icons/heart.svg"}}'></svg>
+                        {{lang 'header.favorite'}}
+                    </a>
+
+
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="header-bottom-bar main-usp-home">
+        <div class="header-bottom-container">
+            <p><svg data-src='{{cdn "assets/icons/clock.svg"}}'></svg>{{lang 'header.menu_bottom_1'}}</p>
+            <span></span>
+            <p><svg data-src='{{cdn "assets/icons/card.svg"}}'></svg>{{lang 'header.menu_bottom_2'}}</p>
+            <span></span>
+            <p><svg data-src='{{cdn "assets/icons/box.svg"}}'></svg> {{lang 'header.menu_bottom_3'}}</p>
+        </div>
+    </div>
+
+</header>
+{{{region name="header_bottom--global"}}}

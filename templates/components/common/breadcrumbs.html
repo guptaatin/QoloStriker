@@ -1,0 +1,21 @@
+<nav class="container" aria-label="Breadcrumb">
+    {{#unless theme_settings.hide_breadcrumbs }}
+        <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+            {{#each breadcrumbs}}
+                <li class="breadcrumb {{#if name "==" "Your Account" }}is-active{{/if}}{{#if @last}} is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumb-label"
+                    itemprop="item"
+                    href="{{url}}"
+                    {{#if @last}}aria-current="page"{{/if}}
+                    >
+                        <span itemprop="name">{{#if name "==" "Search" }}Search Results{{else}}{{#if name "==" "Your Cart" }}Cart{{else}}{{#if name "==" "Your Account" }}My Account {{else}}{{name}}{{/if}}{{/if}}{{/if}}</span>
+                    </a>
+                    <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5625 0.914551L0.09375 1.35986C0 1.47705 0 1.66455 0.09375 1.7583L4.33594 6.00049L0.09375 10.2661C0 10.3599 0 10.5474 0.09375 10.6646L0.5625 11.1099C0.679688 11.2271 0.84375 11.2271 0.960938 11.1099L5.88281 6.21143C5.97656 6.09424 5.97656 5.93018 5.88281 5.81299L0.960938 0.914551C0.84375 0.797363 0.679688 0.797363 0.5625 0.914551Z" fill="black"/>
+                    </svg>
+                    <meta itemprop="position" content="{{add @index 1}}" />
+                </li>
+            {{/each}}
+        </ol>
+    {{/unless}}
+</nav>

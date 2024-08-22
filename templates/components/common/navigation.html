@@ -1,0 +1,122 @@
+<nav class="header-top-container">
+    <div class="container header-top">
+        {{#if page_type '===' 'default'}}
+            <h1 class="header-logo">
+                {{> components/common/store-logo}}
+            </h1>
+        {{else}}
+            <div class="header-logo">
+                {{> components/common/store-logo}}
+            </div>
+        {{/if}}
+        {{> components/common/currency-selector}}
+
+        <ul class="navUser-section">
+            {{#if customer.store_credit.value '>' 0}}
+                <li class="navUser-item">
+                    <a class="navUser-action navUser-action--storeCredit"
+                    data-dropdown="storeCredit-dropdown"
+                    data-options="align:bottom"
+                    href="{{urls.cart}}"
+                    aria-label="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}"
+                    >
+                        <span class="navUser-action-divider">
+                            {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                        {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                    </div>
+                </li>
+            {{/if}}
+                <li class="navUser-item">
+                    <a class="navUser-action navUser-item--compare"
+                    href="{{urls.compare}}"
+                    data-compare-nav
+                    aria-label="{{lang 'common.compare'}}"
+                    >
+                        {{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span>
+                    </a>
+                </li>
+            {{#if theme_settings.social_icon_placement_top}}
+                <li class="navUser-item navUser-item--social">
+                    {{> components/common/social-links}}
+                </li>
+                <li class="navUser-item navUser-item--divider">|</li>
+            {{/if}}
+            {{#if settings.gift_certificates_enabled}}
+                <li class="navUser-item">
+                    <a class="navUser-action"
+                    href="{{urls.gift_certificate.purchase}}"
+                    aria-label="{{lang 'common.gift_cert'}}"
+                    >
+                        {{lang 'common.gift_cert'}}
+                    </a>
+                </li>
+            {{/if}}
+                <li class="navUser-item">
+                    <a class="navUser-action"
+                    href="/contact-us/"
+                    aria-label="Sign Up for Online Purchasing"
+                    >{{lang 'header.contact_us' }}
+                    </a>
+                </li>
+                <li class="navUser-item">
+                    <a class="navUser-action"
+                    href="https://www.stryker.com/"
+                    aria-label="Stryker.com"
+                    >{{lang 'header.visit_stryker' }}
+                    </a>
+                </li>
+                <li class="navUser-item">
+                    <a class="navUser-action navBlock-imp"
+                    id="link_to_signup"
+                    href="/create-account/"
+                    aria-label="Sign Up for Online Purchasing"
+                    >
+                    {{lang 'header.sign_up' }}
+                    </a>
+                </li>
+            <!-- {{#unless customer}}
+                <li class="navUser-item">
+                        <a class="navUser-action"
+                        href="/login.php?action=create_account"
+                        aria-label="Sign Up for Online Purchasing"
+                        >
+                        {{lang 'header.sign_up' }}
+                        </a>
+                </li>
+            {{/unless}} -->
+                <li class="navUser-item navUser-item--account">
+                    {{#if customer}}
+                        <div class="navigation_account">
+                            <button class="nav-button"> <svg width="16" height="16" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.1289 10.8833C10.1094 10.8833 9.65234 11.4458 8 11.4458C6.3125 11.4458 5.85547 10.8833 4.83594 10.8833C2.23438 10.8833 0.125 13.0278 0.125 15.6294V16.5083C0.125 17.4575 0.863281 18.1958 1.8125 18.1958H14.1875C15.1016 18.1958 15.875 17.4575 15.875 16.5083V15.6294C15.875 13.0278 13.7305 10.8833 11.1289 10.8833ZM14.1875 16.5083H1.8125V15.6294C1.8125 13.9419 3.14844 12.5708 4.83594 12.5708C5.36328 12.5708 6.17188 13.1333 8 13.1333C9.79297 13.1333 10.6016 12.5708 11.1289 12.5708C12.8164 12.5708 14.1875 13.9419 14.1875 15.6294V16.5083ZM8 10.3208C10.7773 10.3208 13.0625 8.0708 13.0625 5.2583C13.0625 2.48096 10.7773 0.195801 8 0.195801C5.1875 0.195801 2.9375 2.48096 2.9375 5.2583C2.9375 8.0708 5.1875 10.3208 8 10.3208ZM8 1.8833C9.82812 1.8833 11.375 3.43018 11.375 5.2583C11.375 7.12158 9.82812 8.6333 8 8.6333C6.13672 8.6333 4.625 7.12158 4.625 5.2583C4.625 3.43018 6.13672 1.8833 8 1.8833Z" fill="black"/>
+                            </svg> {{lang 'header.account' }}</button>
+                        </div>
+                    {{else}}
+                        <a class="navUser-action"
+                        href="{{urls.auth.login}}"
+                        aria-label="{{lang 'common.login'}}"
+                        >
+                            {{lang 'common.login'}}
+                        </a>
+                    {{/if}}
+                </li>
+        </ul>
+    </div>
+    <div class="container navigation_account">
+        <ul class="nav-items">
+            <li><a class="menu-link"  href="quick-order-pad/#/accountSettings" aria-label="{{lang 'account.dropdown.myprofile'}}">{{lang 'account.dropdown.myprofile'}}</a></li>
+            <li><a class="menu-link"  href="quick-order-pad/#/orders" aria-label="{{lang 'account.dropdown.mydashboard'}}">{{lang 'account.dropdown.mydashboard'}}</a></li>
+            <li><a class="menu-link"  href="quick-order-pad/#/orders" aria-label="{{lang 'account.dropdown.orders'}}">{{lang 'account.dropdown.orders'}}</a></li>
+            <li><a class="menu-link"  href="quick-order-pad/#/purchased-products" aria-label="{{lang 'account.dropdown.quickorder'}}">{{lang 'account.dropdown.quickorder'}}</a></li>
+            <li><a class="menu-link"  href="quick-order-pad/#/quotes" aria-label="{{lang 'account.dropdown.quotes'}}">{{lang 'account.dropdown.quotes'}}</a></li>
+            <!-- <li><a class="menu-link"  href="quick-order-pad/#/addresses" aria-label="{{lang 'account.dropdown.manageaddress'}}">{{lang 'account.dropdown.manageaddress'}}</a></li> -->
+            <li><a class="menu-link"  href="/edit-address/" aria-label="{{lang 'account.dropdown.manageaddress'}}">{{lang 'account.dropdown.manageaddress'}}</a></li>            
+            <li><a class="menu-link"  href="/my-subscriptions/" aria-label="{{lang 'account.dropdown.managesubscription'}}">{{lang 'account.dropdown.managesubscription'}}</a></li>
+            <li><a class="menu-link"  href="/my-subscriptions/" aria-label="{{lang 'account.dropdown.managesubscription'}}">{{lang 'account.dropdown.managesubscription'}}</a></li>
+            <li><a href="javascript:void(0)" onclick="getLogout()" aria-label="{{lang 'account.dropdown.logout'}}">{{lang 'account.dropdown.logout'}}</a></li>
+          </ul>
+    </div>
+</nav>

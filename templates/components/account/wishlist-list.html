@@ -1,0 +1,60 @@
+{{#if customer.wishlists}}
+<div class="favorite-header">
+    <h5>{{lang 'account.wishlists.title'}}</h5>
+    <div class="form-actions">
+        <a href="{{this.urls.account.wishlists.add}}" class="button button--primary" role="button" data-wishlist>{{lang
+            'account.wishlists.new'}}</a>
+    </div>
+</div>
+<table class="table table--line wishlists-table">
+    <thead class="table-thead">
+        <tr>
+            <th>{{lang 'account.wishlists.name'}}</th>
+            <th>{{lang 'account.wishlists.num_items'}}</th>
+            <th style="display: none;">{{lang 'account.wishlists.action'}}</th>
+        </tr>
+    </thead>
+    <tbody class="table-tbody">
+        {{#each customer.wishlists}}
+        <tr>
+            <td class="wishlist-name"><a href="{{view_url}}">{{{name}}}</a></td>
+            <td>{{num_items}} {{#if num_items "===" 1}}item{{else}}items{{/if}}</td>
+            <td class="table-actions">
+                <form method="post" action="{{delete_url}}" class="form">
+                    <fieldset class="form-fieldset">
+                        <a href="{{edit_url}}" class="simple-button" data-wishlist>{{lang
+                            'account.wishlists.edit_name'}}</a>
+                        <input type="submit" value="Delete List" class="simple-button" data-wishlist-delete>
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<div class="block-wishlist-mobile">
+    {{#each customer.wishlists}}
+    <div class="block-wishlist">
+        <div class="block-wishlist-top">
+            <a href="{{view_url}}" class="wishlist-name">{{{name}}}</a>
+            <span>{{num_items}} {{#if num_items "===" 1}}item{{else}}items{{/if}}</span>
+        </div>
+        <div class="table-actions">
+            <form method="post" action="{{delete_url}}" class="form">
+                <fieldset class="form-fieldset">
+                    <a href="{{edit_url}}" class="simple-button" data-wishlist>{{lang
+                        'account.wishlists.edit_name'}}</a>
+                    <input type="submit" value="Delete List" class="simple-button" data-wishlist-delete>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div class="empty-wishlist">
+    <h6>{{lang 'account.wishlists.no_lists'}}</h6>
+    <p>{{lang 'account.wishlists.wishlist_start'}}</p>
+    <a href="{{this.urls.account.wishlists.add}}">{{lang 'account.wishlists.new'}}</a>
+</div>
+{{/if}}

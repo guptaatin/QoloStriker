@@ -1,0 +1,39 @@
+{{inject 'enterWishlistNameError' (lang 'account.wishlists.enter_wishlist_name_error')}}
+
+<div class="wishlist-add">
+    <header class="wishlist-header">
+        {{#if forms.wishlist.id}}
+        <h1>{{lang 'account.wishlists.edit'}}</h1>
+        {{else}}
+        <h1>{{lang 'account.wishlists.new'}}</h1>
+        <p>{{lang 'account.wishlists.tag_line'}}</p>
+        {{/if}}
+        {{#if forms.wishlist.errors}}
+        {{> components/common/alert/alert-error forms.wishlist.errors}}
+        {{/if}}
+    </header>
+    <form
+        action="{{#if forms.wishlist.id}}{{urls.account.wishlists.edit}}{{else}}{{urls.account.wishlists.add}}&product_id={{forms.wishlist.product_id}}{{/if}}"
+        class="form wishlist-form" method="post">
+        <input type="hidden" name="submit">
+
+        <div class="form-field">
+            <label class="form-label" for="wishlistname">
+                {{lang 'forms.wishlist.name'}}
+            </label>
+            <input class="form-input" name="wishlistname" id="wishlistname"
+                placeholder="Enter {{lang 'forms.wishlist.name'}}" value="{{forms.wishlist.name}}">
+        </div>
+        <div class="form-actions">
+            {{#if forms.wishlist.id}}
+            <input type="submit" class="button button--primary" value="Save">
+            <input type="hidden" name="wishlistid" value="{{forms.wishlist.id}}">
+            <a class="button button--primary" href="/wishlist.php">Cancel</a>
+            {{else}}
+            <input type="submit" class="button button--primary" value="{{lang 'account.wishlists.create'}}">
+            <a class="button button--primary" href="/wishlist.php">Cancel</a>
+            {{/if}}
+        </div>
+    </form>
+
+</div>

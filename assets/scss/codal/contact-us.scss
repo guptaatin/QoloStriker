@@ -1,0 +1,208 @@
+.page.contact-us{
+    .breadcrumbs{
+        margin-bottom: 32px;
+        @media screen and (max-width: 800px){
+            margin-bottom: 24px;
+        }
+    }
+    .contact-us-header{
+        background: rgba(221, 222, 221, 0.3);
+        padding: 80px 17px;
+        text-align: center;
+        margin-bottom: 60px;
+        @media screen and (max-width: 800px){
+            padding: 40px 17px;
+            margin-bottom: 32px;
+        }
+        h1{
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 40px;
+            margin: 0 0 16px;
+            @media screen and (max-width: 800px){
+                font-size: 21px;
+                margin: 0;
+            }
+        }
+        p{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0;
+        }
+    }
+    .contact-help-content{
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+        @media screen and (max-width: 800px){
+            flex-direction: column;
+        }
+        .contact-help-wrapper-block{
+            background: #FFB500;
+            width: 33%;
+            border-radius: 4px;
+            padding: 40px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 200px;
+            @media screen and (max-width: 800px){
+                width: 100%;
+            }
+            &:last-child{
+                h5{
+                    max-width: 250px;
+                }
+            }
+            h5{
+                font-family: 'HumstSlab712 BT';
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+                margin: 0 auto 32px;
+                text-transform: none;
+                max-width: 190px;
+            }
+            a{
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                padding: 9px 20px;
+                width: max-content;
+                margin: 0 auto;
+                background: #FFFFFF;
+                border: 1px solid #000000;
+                color: #000;
+                @media screen and (max-width: 800px){
+                    width: 100%;
+                }
+                &:hover{
+                    border: 1px solid #000;
+                    color: #000;
+                    background: rgba(255, 181, 0, 0.08);
+                }
+            }
+            img{
+                width: 20px;
+            }
+        }
+    }
+}
+.contact-support-container{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 88px;
+    @media screen and (max-width: 800px){
+        flex-direction: column;
+        margin-bottom: 56px;
+    }
+    .contact-support-wrapper-image{
+        background: #F2F2F2;
+        border: 1px solid #E4E4E4;
+        border-radius: 4px;
+        display: flex;
+        width: 59%;
+        position: relative;
+        justify-content: space-between;
+        @media screen and (max-width: 800px){
+            flex-direction: column;
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 47vw;
+        }
+        .text-block{
+            padding: 48px 36px 48px 32px;
+            @media screen and (max-width: 800px){
+                padding: 32px 24px 30px;
+            }
+            h5{
+                font-family: 'HumstSlab712 BT';
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+                margin: 0 0 24px;
+                text-transform: none;
+            }
+            p{
+                font-weight: 400;
+                font-size: 16px;
+                max-width: 373px;
+                margin: 0 0 32px;
+            }
+        }
+        .contact-main-image{
+            max-width: 270px;
+            padding: 20px 0;
+            @media screen and (max-width: 800px){
+                max-width: 100%;
+                padding: 0;
+                width: 100%;
+                position: absolute;
+                bottom: -47vw;
+            }
+        }
+        .block-phone{
+            h6{
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 0 0 8px;
+            }
+            a{
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+                color: #85458A;
+                text-decoration: none;
+                &:hover{
+                    color: #000;
+                }
+                img{
+                    max-width: 16px;
+                    margin-right: 14px;
+                }
+                &:not(:last-child){
+                    margin-bottom: 12px;
+                    display: block;
+                }
+            }
+        }
+    }
+    .contact-support-wrapper{
+        background: #F2F2F2;
+        border: 1px solid #E4E4E4;
+        border-radius: 4px;
+        padding: 40px 32px;
+        width: 41%;
+        @media screen and (max-width: 800px){
+            width: 100%;
+            padding: 16px 32px;
+        }
+        h5{
+            font-family: 'HumstSlab712 BT';
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+            margin: 0 0 24px;
+            max-width: 280px;
+
+        }
+        a{
+            padding: 9px 20px;
+            background: #FFFFFF;
+            border: 1px solid #000000;
+            color: #000;
+            margin: 0;
+            &:hover{
+                border: 1px solid #ffb500;
+                color: #000;
+                background: rgba(255, 181, 0, 0.08);
+            }
+            @media screen and (max-width: 800px){
+                width: 100%;
+            }
+        }
+    }
+}

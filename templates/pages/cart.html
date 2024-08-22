@@ -1,0 +1,67 @@
+---
+cart: true
+---
+{{inject 'cancelButtonText' (lang 'common.cancel')}}
+{{#partial "page"}}
+{{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+<div class="page">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="page-content container" data-cart>
+
+        {{> components/cart/page-title}}
+
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+
+        {{#if cart.items.length}}
+        <div class="loadingOverlay"></div>
+
+        <div data-cart-content class="cart-content-padding-right">
+            {{> components/cart/content}}
+        </div>
+
+        <div data-cart-totals class="cart-content-padding-right">
+            {{> components/cart/totals}}
+        </div>
+
+        {{{region name="cart_below_totals"}}}
+
+        {{#if cart.show_primary_checkout_button}}
+        <div class="cart-actions cart-content-padding-right">
+            <a class="button button--primary" href="{{urls.checkout.single_address}}"
+                title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+            {{#if cart.show_multiple_address_shipping}}
+            <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                {{lang 'cart.preview.checkout_multiple'}}
+            </a>
+            {{/if}}
+        </div>
+        {{else}}
+        <div class="cart-actions cart-content-padding-right">
+            <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang
+                'cart.continue_shopping'}}</a>
+        </div>
+        {{/if}}
+
+        <!-- {{#if cart.additional_checkout_buttons}}
+                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            {{/if}} -->
+        {{else}}
+        <div class="empty-cart-wrapper">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M8 0.195801C3.71875 0.195801 0.25 3.6958 0.25 7.9458C0.25 12.2271 3.71875 15.6958 8 15.6958C12.25 15.6958 15.75 12.2271 15.75 7.9458C15.75 3.6958 12.25 0.195801 8 0.195801ZM8 14.1958C4.53125 14.1958 1.75 11.4146 1.75 7.9458C1.75 4.5083 4.53125 1.6958 8 1.6958C11.4375 1.6958 14.25 4.5083 14.25 7.9458C14.25 11.4146 11.4375 14.1958 8 14.1958ZM8 3.6333C7.25 3.6333 6.6875 4.22705 6.6875 4.9458C6.6875 5.6958 7.25 6.2583 8 6.2583C8.71875 6.2583 9.3125 5.6958 9.3125 4.9458C9.3125 4.22705 8.71875 3.6333 8 3.6333ZM9.75 11.5708V10.8208C9.75 10.6333 9.5625 10.4458 9.375 10.4458H9V7.3208C9 7.1333 8.8125 6.9458 8.625 6.9458H6.625C6.40625 6.9458 6.25 7.1333 6.25 7.3208V8.0708C6.25 8.28955 6.40625 8.4458 6.625 8.4458H7V10.4458H6.625C6.40625 10.4458 6.25 10.6333 6.25 10.8208V11.5708C6.25 11.7896 6.40625 11.9458 6.625 11.9458H9.375C9.5625 11.9458 9.75 11.7896 9.75 11.5708Z"
+                    fill="#2B72CC" />
+            </svg>
+            <h3 tabindex="0"> {{lang 'cart.checkout.empty_cart'}}</h3>
+        </div>
+        {{/if}}
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

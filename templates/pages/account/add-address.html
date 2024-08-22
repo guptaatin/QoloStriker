@@ -1,0 +1,78 @@
+{{#partial "page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="container">
+        <h2 class="account-title">{{lang 'account.breadcrumb'}}</h2>
+
+        {{> components/account/navigation account_page='addresses'}}
+        <div class="account account--fixed address-edit">
+            {{#if forms.address.address_id}}
+                <div class="powr-form-builder" id="dbf32b8e_1664191603"></div><script src="https://www.powr.io/powr.js?platform=bigcommerce"></script>
+            {{else}}
+                <div class="powr-form-builder" id="ac315d7f_1664275139"></div><script src="https://www.powr.io/powr.js?platform=bigcommerce"></script>
+            {{/if}}
+            <div class="account-body" style="display:none">
+                <form action="{{forms.address.action}}" data-address-form class="form" method="post">
+                    {{#if forms.address.address_id }}
+                        <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
+                    {{/if}}
+                    <fieldset class="form-fieldset">
+                        <div class="form-row form-row--half">
+                            {{#each forms.address.shipping_fields }}
+                                {{{dynamicComponent 'components/common/forms'}}}
+                            {{/each}}
+                        </div>
+                    </fieldset>
+                    <div class="form-actions add-address-btn">
+                        {{#if forms.address.address_id}}
+                            <input type="submit" class="button button--primary" value="{{lang 'forms.address.edit.submit_value'}}">
+                        {{else}}
+                            <input type="submit" class="button button--primary" value="{{lang 'forms.address.add.submit_value'}}">
+                        {{/if}}
+                        <a href="{{urls.account.addresses}}" class="button">{{lang 'common.cancel'}}</a>
+                        {{inject 'required' (lang 'common.required')}}
+                        {{inject 'state_error' (lang 'errors.state_error')}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout/base}}
+<script>
+    window.addEventListener("message", function(e){
+        if(e.data != 'request-shipping-address') return;
+        var object = JSON.stringify({
+            type: 'addressAutofill',
+            data: {
+                first_name: document.querySelector('input[data-field-type="FirstName"]').value.toString() || '',
+                last_name: document.querySelector('input[data-field-type="LastName"]').value.toString() || '',
+                company_name: document.querySelector('input[data-field-type="CompanyName"]').value.toString() || '',
+                phone: document.querySelector('input[data-field-type="Phone"]').value.toString() || '',
+                address: document.querySelector('input[data-field-type="AddressLine1"]').value || '',
+                address2: document.querySelector('input[data-field-type="AddressLine2"]').value || '',
+                city: document.querySelector('input[data-field-type="City"]').value || '',
+                state: document.querySelector('select[data-field-type="State"]').options[document.querySelector('select[data-field-type="State"]').selectedIndex].text || '',
+                zip: document.querySelector('input[data-field-type="Zip"]').value || '',
+                country: document.querySelector('select[data-field-type="Country"]').options[document.querySelector('select[data-field-type="Country"]').selectedIndex].text || ''
+            }
+        })
+        console.log(e.data, 'parent-data')
+        let iframe = document.querySelector("iframe");
+        iframe.contentWindow.postMessage(object, "*"); 
+    });
+</script>
+<script>
+    // document.querySelector('select[data-field-type="Country"]').options[document.querySelector('select[data-field-type="Country"]').selectedIndex].text
+    // document.querySelector('input[data-type="firstname"]').value = document.querySelector('input[data-field-type="FirstName"]').value.toString();
+    // document.querySelector('input[data-type="lastname"]').value = document.querySelector('input[data-field-type="LastName"]').value.toString();
+    // document.querySelector('input[title="Company Name"]').value = document.querySelector('input[data-field-type="CompanyName"]').value;
+    // document.querySelector('input[data-type="phone"]').value = document.querySelector('input[data-field-type="Phone"]').value;
+    // document.querySelector('input[name="address1"]').value = document.querySelector('input[data-field-type="AddressLine1"]').value;
+    // document.querySelector('input[name="address2"]').value =  document.querySelector('input[data-field-type="AddressLine2"]').value;
+    // document.querySelector('input[name="city"]').value = document.querySelector('input[data-field-type="City"]').value;
+    // document.querySelector('input[name="state"]').value = document.querySelector('select[data-field-type="State"]').options[document.querySelector('select[data-field-type="State"]').selectedIndex].text
+    // document.querySelector('input[name="zip"]').value = document.querySelector('input[data-field-type="Zip"]').value;
+    // document.querySelector('select[name="country"]').value
+</script>

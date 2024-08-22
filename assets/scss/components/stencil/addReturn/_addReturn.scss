@@ -1,0 +1,124 @@
+// =============================================================================
+// ADD RETURN REQUEST (CSS)
+// =============================================================================
+
+
+.account--addReturn {
+    .table {
+        display: block;
+        margin-bottom: spacing("double");
+
+        @include breakpoint("small") {
+            display: table;
+            margin: 0 0 56px;
+            border: none;
+        }
+
+        tr {
+            display: block;
+            padding: spacing("single") 0;
+
+            @include breakpoint("small") {
+                display: table-row;
+                padding: 0;
+            }
+        }
+
+        th,
+        td {
+            display: block;
+            padding: 0;
+
+            @include breakpoint("small") {
+                display: table-cell;
+                padding-bottom: 8px;
+                padding-top: 8px;
+            }
+
+            + th,
+            + td {
+                padding-left: 0;
+
+                @include breakpoint("small") {
+                    padding-left: spacing("single");
+                }
+            }
+        }
+
+        .return-itemTitle + .definitionList {
+            margin-top: spacing("eighth");
+        }
+    }
+
+    .table-thead {
+        display: none;
+
+        @include breakpoint("small") {
+            display: table-header-group;
+        }
+
+        th {
+            font-size: fontSize("smaller");
+        }
+
+        th:first-child {
+            width: 60%;
+        }
+    }
+
+    .table-tbody {
+        display: block;
+
+        @include breakpoint("small") {
+            display: table-row-group;
+        }
+    }
+}
+
+
+.return-itemName {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.return-itemPrice {
+    color: color("greys", "light");
+    margin-bottom: spacing("quarter");
+
+    @include breakpoint("small") {
+        color: inherit;
+        margin-bottom: 0;
+        text-align: center;
+    }
+}
+
+.return-itemQuantity {
+    .form-label {
+        display: inline;
+        margin-right: spacing("quarter");
+
+        @include breakpoint("small") {
+            @include u-hidden("visually");
+        }
+    }
+}
+
+
+
+
+
+
+.account--addReturn-row {
+    @include grid-row($behavior: "nest");
+    margin: 0 (-(spacing("base")));
+}
+
+.account--addReturn-column {
+    @include grid-column(12);
+    padding: 0 spacing("base");
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+}

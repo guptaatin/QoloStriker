@@ -1,0 +1,1 @@
+{"components/common/alert/alert-info":"<div class=\"alertBox alertBox--info\" data-promotion-banner>\n    <svg data-src='{{cdn \"assets/icons/error.svg\"}}'></svg>\n    <p class=\"alertBox-column alertBox-message\">\n        <span>{{{this}}}</span>\n    </p>\n</div>\n"}

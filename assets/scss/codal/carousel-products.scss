@@ -1,0 +1,244 @@
+.slick-next:hover::before{
+    background-image: none !important;
+}
+.slick-next, .slick-prev{
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 12.5px 10.5px;
+    width: auto;
+    height: auto;
+    @media screen and (max-width: 600px) {
+        display: none !important;
+    }
+}
+.slick-next::before, .slick-prev::before{
+    background-image: none;
+    width: auto;
+    height: auto;
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+}
+.slick-next{
+    @media screen and (max-width: 1300px) {
+        right: 0;
+    }
+}
+.slick-prev{
+    @media screen and (max-width: 1300px) {
+        left: 0;
+    }
+}
+.slick-next::before{
+    transform: rotate(135deg);
+    margin-right: 5px;
+}
+.slick-prev::before{
+    transform: rotate(-45deg);
+    margin-left: 5px;
+}
+.main.full .slide-product-related{
+    margin-bottom: 124px;
+    @media screen and (max-width: 800px) {
+        margin-bottom: 105px;
+    }
+}
+.slide-product-related{
+    margin-bottom: 75px;
+    @media screen and (max-width: 800px) {
+        margin-bottom: 56px;
+    }
+}
+.productCarousel{
+    margin: 0 !important;
+    h2{
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        margin: 0 0 32px;
+        letter-spacing: 0;
+        @media screen and (max-width: 800px) {
+            font-size: 20px;
+        }
+    }
+    .slick-list{
+        @media screen and (max-width: 600px) {
+            padding-right: 25%;
+        }
+    }
+    .slick-track{
+        display: flex;
+    }
+    .slick-dots{
+        display: none !important;
+    }
+    .slick-list{
+        margin: 0 -10px;
+        @media screen and (max-width: 800px) {
+            margin: 0;
+        }
+    }
+    .productCarousel-slide{
+        padding-left: 10px;
+        padding-right: 10px;
+        height: auto;
+        @media screen and (max-width: 600px) {
+            padding-left: 0;
+            padding-right: 20px;
+        }
+    }
+    .card{
+        height: 100%;
+        position: relative;
+    }
+    .price.price--non-sale{
+        margin-left: 0;
+        font-weight: 400;
+        font-size: 14px;
+    }
+    .card-text{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 6px;
+        font-size: 12px;
+        color: #989B9A;
+        margin-bottom: 8px;
+        span{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        p{
+            margin-bottom: 0;
+        }
+    }
+    .card-title {
+        text-align: initial;
+        margin-bottom: 8px;
+        a{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0;
+            color: #000000;
+        }
+    }
+    .cart-sku{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        span{
+            color: #767979; 
+        }
+    }
+    .card-figcaption-button{
+        margin-top: 24px;
+        background: #FFB500;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        letter-spacing: 0.5px;
+        color: #000000;
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 48px);
+    }
+    .card-figcaption-button-log-in{
+        background: #E4E4E4;
+    }
+    .card-content{
+        margin-bottom: 80px;
+        text-align: initial;
+        @media screen and (max-width: 600px) {
+            margin-bottom: 64px;
+        }
+    }
+    .card-img-container:after{
+        padding-bottom: 100%;
+    }
+    .card-figure{
+        margin-bottom: 24px;
+    }
+    .card-body{
+        padding: 0 24px;
+    }
+}
+.slide-product-related.container{
+    @media screen and (max-width: 600px) {
+        padding: 0 0 0 17px;
+    }
+}
+.slide-home{
+    margin-bottom: 100px;
+    .title-section{
+        margin-bottom: 56px;
+        @media screen and (max-width: 800px) {
+            margin-bottom: 48px;
+        }
+    }
+    .card-title a{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        color: #000000;
+    }
+    .card-img-container{
+        border: 1px solid #DDDEDD;
+        border-radius: 83px;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+        display: flex;
+        @media screen and (max-width: 600px) {
+            width: 140px;
+            height: 140px;
+        }
+    }
+    img{
+        margin: auto;
+        max-width: 130px;
+        @media screen and (max-width: 600px) {
+            max-width: 115px;
+        }
+    }
+    .card-img-container::after{
+        content: none;
+    }
+    .card-body{
+        text-align: center;
+        padding: 0;
+        margin-top: 14px;
+    }
+    .slick-dots{
+        bottom: -50px;
+        @media screen and (min-width: 800px) {
+            display: none !important;
+        }
+        button{
+            border: 1px solid #C9DDE7;
+            height: 10px;
+            width: 10px;
+            vertical-align: initial;
+            display: block;
+        }
+        button:before{
+            height: 10px;
+            width: 10px;
+        }
+    }
+    li{
+        padding: 4px;
+        height: max-content;
+        width: max-content;
+    }
+    li.slick-active button:before{
+        background: #C9DDE7;
+    }
+}

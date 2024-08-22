@@ -1,0 +1,117 @@
+<article
+    class="card
+    {{#if alternate}} card--alternate{{/if}}"
+    data-test="card-{{id}}"
+    {{#if settings.data_tag_enabled}}
+        data-event-type="{{event}}"
+        data-entity-id="{{id}}"
+        data-position="{{position}}"
+        data-name="{{name}}"
+        data-product-category="
+        {{#each category}}
+            {{#if @last}}
+                {{this}}
+            {{else}}
+                {{this}},
+            {{/if}}
+        {{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="
+        {{#if price.with_tax}}
+            {{price.with_tax.value}}
+        {{else}}
+            {{price.without_tax.value}}
+        {{/if}}"
+    {{/if}}>
+    <figure class="card-figure">
+        {{#if stock_level '===' 0}}
+            {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=(lang "page_builder.pdp_sold_out_label")
+                }}
+            {{else}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=theme_settings.pdp_sold_out_label
+                }}
+            {{/if}}
+        {{else}}
+            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                {{#if theme_settings.pdp_sale_badge_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=(lang "page_builder.pdp_sale_badge_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=theme_settings.pdp_sale_badge_label
+                    }}
+                {{/if}}
+            {{/or}}
+        {{/if}}
+        <a href="{{url}}"
+           class="card-figure__link"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size=theme_settings.productgallery_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
+            </div>
+        </a>
+    </figure>
+    <div class="card-body">
+        <div class="card-content">
+            {{#and rating show_rating}}
+                <p class="card-text" data-test-info-type="productRating">
+                    <span class="rating--small">
+                        {{> components/products/ratings rating_target=name rating=rating}}
+                    </span>
+                </p>
+            {{/and}}
+            {{#if brand.name}}
+                <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+            {{/if}}
+            <h3 class="card-title">
+                <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+                href="{{url}}"
+                {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+                >
+                    {{name}}
+                </a>
+            </h3>
+            {{#if customer}}
+                <div class="card-text" data-test-info-type="price">
+                        {{> components/products/price price=price}}
+                </div>
+            {{/if}}
+            {{#if sku}}
+                <p class="cart-sku"><span>{{ lang 'categories.product_catalog'}}</span>{{sku}}</p>
+            {{/if}}
+        </div>
+
+        {{#if customer }}
+            {{#if has_options}}
+                <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+            {{else}}
+                <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{#if (getVar "more_info") '==' 'category_page' }}{{lang 'products.more_info'}}{{else}}{{lang 'products.quick_view'}}{{/if}}</a>
+            {{/if}}
+            {{#if out_of_stock_message }}
+                <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+            {{/if}}
+        {{else}}
+            <a href="/login.php" class="test button button--small card-figcaption-button card-figcaption-button-log-in" data-product-id="{{id}}">{{lang 'global.log_price'}}</a>
+        {{/if}}
+    </div>
+</article>

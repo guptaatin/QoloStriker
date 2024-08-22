@@ -1,0 +1,32 @@
+{{#partial "page"}}
+<div class="account" data-pagination-wishlist>
+
+    {{#if wishlist.is_editable}}
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{/if}}
+    <div class="container wishlist-page">
+        <h2 class="account-title">{{lang 'account.breadcrumb'}}</h2>
+        {{#if wishlist.is_editable}}
+            {{> components/account/navigation account_page='wishlists'}}
+        {{/if}}
+        <a href="/wishlist.php" class="back-to-all">
+            <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.11719 10.6096L6.58594 10.1643C6.70312 10.0471 6.70312 9.85962 6.58594 9.76587L2.95312 6.10962H10.9688C11.1094 6.10962 11.25 5.99243 11.25 5.82837V5.17212C11.25 5.03149 11.1094 4.89087 10.9688 4.89087H2.95312L6.58594 1.25806C6.70312 1.16431 6.70312 0.976807 6.58594 0.859619L6.11719 0.414307C6.02344 0.297119 5.83594 0.297119 5.71875 0.414307L0.820312 5.31274C0.703125 5.42993 0.703125 5.59399 0.820312 5.71118L5.71875 10.6096C5.83594 10.7268 6.02344 10.7268 6.11719 10.6096Z" fill="#85458A"/>
+            </svg>
+            {{lang 'account.wishlists.back_to'}}</a>
+        {{#if wishlist.items}}
+            <h5 class="wish-list-title">{{wishlist.name}}</h5>
+            {{> components/account/wishlist-item-list show_remove=wishlist.is_editable}}
+        {{else}}
+        <div class="wishlist-title-container">
+            <h5 class="wishlist-title">{{wishlist.name}}</h5>
+        </div>
+            <div class="wishlist-empty-content">
+                <h6>{{lang 'account.wishlists.you_have_none'}}</h6>
+            <p>{{lang 'account.wishlists.empty_wishlist'}}</p>
+            </div>
+        {{/if}}
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

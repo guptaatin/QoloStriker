@@ -1,0 +1,6 @@
+{{#if product.description}}
+    <p class="productView-title" style="display: none;">{{lang 'products.description'}}</p>
+    <div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+        {{{product.description}}}
+    </div>
+{{/if}}

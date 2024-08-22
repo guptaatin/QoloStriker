@@ -1,0 +1,153 @@
+.faq{
+    .breadcrumbs{
+        margin-bottom: 32px;
+        @media screen and (max-width: 800px){
+            margin-bottom: 24px;
+        }
+    }
+    .faq-header{
+        padding: 80px 30px;
+        text-align: center;
+        background: rgba(221, 222, 221, 0.3);
+        margin-bottom: 60px;
+        @media screen and (max-width: 800px){
+            padding: 40px 17px;
+            margin-bottom: 32px;
+        }
+        h1{
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 40px;
+            margin: 0;
+            @media screen and (max-width: 800px){
+                font-size: 21px;
+            }
+        }
+    }
+    .faq-content{
+        display: flex;
+        gap: 10%;
+        @media screen and (max-width: 800px){
+            gap: 0;
+            display: block;
+        }
+        .navigation-faq{
+            margin: 0;
+            list-style: none;
+            @media screen and (max-width: 800px){
+                display: none;
+            }
+            li{
+                margin-bottom: 20px;
+                scroll-margin-top: 100rem;
+                scroll-padding-top: 100rem;
+            }
+            a{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                text-decoration: none;
+                color: #000;
+                &:active, &:focus, &:focus-visible, &:focus-within{
+                    color: #85458A;
+                }
+            }
+            a.active{
+                color: #85458A;
+            }
+        }
+    }
+    .faq-accordion-container{
+        max-width: 520px;
+    }
+    .accordion-wrapper{
+        margin-bottom: 6px;
+        .accordion-heading{
+            position: relative;
+            cursor: pointer;
+            h5{
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                color: #545857;
+                margin: 0 29px 8px 0;
+                text-transform: none;
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 10px;
+                height: 4px;
+                background: #545857;
+                width: 20px;
+                transition: all .3s ease-in-out;
+                border-radius: 1px;
+                @media screen and (max-width: 800px){
+                    width: 19px;
+                    top: 9px;
+                }
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                right: 8px;
+                top: 2px;
+                width: 4px;
+                background: #545857;
+                height: 20px;
+                border-radius: 1px;
+                transition: all .3s ease-in-out;
+                @media screen and (max-width: 800px){
+                    height: 19px;
+                    right: 7.5px;
+                }
+            }
+            &:hover{
+                &::after, &::before{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .accordion-text{
+            max-height: 0;
+            overflow: hidden;
+            transition: all .4s ease-in-out;
+            margin: 0;
+            a{
+                color: #85458A;
+                text-decoration: none;
+            }
+        }
+        &.active{
+            .accordion-text{
+                max-height: 700px;
+                margin-bottom: 22px;
+            }
+            .accordion-heading{
+                &::after{
+                    transform: rotate(270deg);
+                }
+            }
+        }
+    }
+    .faq-section{
+        max-width: 520px;
+        margin: 0 auto 32px;
+        padding-bottom: 18px;
+        &:not(:last-child){
+            border-bottom: 1px solid #DDDEDD;
+        }
+    }
+    .faq-title{
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        margin: 0 0 14px;
+        @media screen and (max-width: 800px){
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+}

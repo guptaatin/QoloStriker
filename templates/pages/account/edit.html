@@ -1,0 +1,26 @@
+{{inject 'passwordRequirements' settings.password_requirements}}
+{{#partial "page"}}
+    <div class="account account--fixed account-settings">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <div class="container">
+            <h2 class="account-title">{{lang 'account.breadcrumb'}}</h2>
+            {{> components/account/navigation account_page='settings'}}
+            <h5 class="account-subtitle">{{lang 'account.subtitle'}}</h5>
+            {{#if forms.edit_account.error}}
+            {{> components/common/alert/alert-error forms.edit_account.error}}
+            {{/if}}
+            {{#if forms.edit_account.success}}
+            {{> components/common/alert/alert-success forms.edit_account.success}}
+            {{/if}}
+            {{> components/account/edit-account}}
+            <div class="account-wrapper-btn">
+                <a class="button" href="login.php?action=reset_password">
+                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6.00024V4.00024C3 1.81274 4.78125 0.000244141 7 0.000244141C9.1875 0.000244141 11 1.81274 11 4.00024V6.00024H12C13.0938 6.00024 14 6.90649 14 8.00024V14.0002C14 15.1252 13.0938 16.0002 12 16.0002H2C0.875 16.0002 0 15.1252 0 14.0002V8.00024C0 6.90649 0.875 6.00024 2 6.00024H3ZM4.5 6.00024H9.5V4.00024C9.5 2.62524 8.375 1.50024 7 1.50024C5.59375 1.50024 4.5 2.62524 4.5 4.00024V6.00024ZM1.5 14.0002C1.5 14.2815 1.71875 14.5002 2 14.5002H12C12.25 14.5002 12.5 14.2815 12.5 14.0002V8.00024C12.5 7.75024 12.25 7.50024 12 7.50024H2C1.71875 7.50024 1.5 7.75024 1.5 8.00024V14.0002Z" fill="black"/>
+                    </svg>Reset My Password</a>
+                <a class="button" href="/login.php?action=logout"> <svg data-src='{{cdn "assets/icons/login.svg"}}'></svg> Sign Out</a>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout/base}}
